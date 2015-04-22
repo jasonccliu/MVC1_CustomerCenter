@@ -17,7 +17,10 @@ namespace MVC1_CustomerCenter.Models
     {
         public int Id { get; set; }
         [Required]
+
         public int 客戶Id { get; set; }
+        [Required]
+
         public string 職稱 { get; set; }
         [Required]
         public string 姓名 { get; set; }
@@ -27,6 +30,7 @@ namespace MVC1_CustomerCenter.Models
         [Required]
         public string 手機 { get; set; }
         public string 電話 { get; set; }
+        public Nullable<bool> 是否已刪除 { get; set; }
     
         public virtual 客戶資料 客戶資料 { get; set; }
     }

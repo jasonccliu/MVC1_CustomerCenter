@@ -17,7 +17,7 @@ namespace MVC1_CustomerCenter.Controllers
         // GET: CustomerData
         public ActionResult Index()
         {
-            return View(db.客戶資料.ToList());
+            return View(db.客戶資料.Where(q => q.是否已刪除 == false).ToList());
         }
 
         // GET: CustomerData/Details/5
@@ -50,6 +50,7 @@ namespace MVC1_CustomerCenter.Controllers
         {
             if (ModelState.IsValid)
             {
+                客戶資料.是否已刪除 = false;
                 db.客戶資料.Add(客戶資料);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -83,6 +84,7 @@ namespace MVC1_CustomerCenter.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(客戶資料).State = EntityState.Modified;
+                客戶資料.是否已刪除 = false;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -110,7 +112,8 @@ namespace MVC1_CustomerCenter.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             客戶資料 客戶資料 = db.客戶資料.Find(id);
-            db.客戶資料.Remove(客戶資料);
+            客戶資料.是否已刪除 = true;
+            //db.客戶資料.Remove(客戶資料);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
