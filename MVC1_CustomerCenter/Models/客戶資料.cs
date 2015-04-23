@@ -28,6 +28,7 @@ namespace MVC1_CustomerCenter.Models
 
         public string 統一編號 { get; set; }
         [Required]
+        [RegularExpression("\\d{4}-\\d{6}", ErrorMessage= "電話格式不符合，範例0912-123456")]
         public string 電話 { get; set; }
         public string 傳真 { get; set; }
         [Required]
