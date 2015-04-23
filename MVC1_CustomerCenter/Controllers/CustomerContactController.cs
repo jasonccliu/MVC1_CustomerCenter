@@ -52,10 +52,22 @@ namespace MVC1_CustomerCenter.Controllers
         {
             if (ModelState.IsValid)
             {
-                客戶聯絡人.是否已刪除 = false;
-                db.客戶聯絡人.Add(客戶聯絡人);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                CustomerMngt objCustomerMgr = new CustomerMngt();
+                bool checkSameCustomerEmail = objCustomerMgr.checkCustomerMailAddressExisted(客戶聯絡人);
+
+                if (checkSameCustomerEmail == false)
+                {
+                    客戶聯絡人.是否已刪除 = false;
+                    db.客戶聯絡人.Add(客戶聯絡人);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    TempData["CheckAddr"] = "Email 不能重複";
+                    return RedirectToAction("Index");
+                }
             }
 
             ViewBag.客戶Id = new SelectList(db.客戶資料, "Id", "客戶名稱", 客戶聯絡人.客戶Id);

@@ -69,12 +69,21 @@
             </div>
         </div>
     </div>
-}
+    
+  }
+
 
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+            @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+            }
+
+@if (TempData["CheckAddr"] != null)
+{
+    <script type="text/javascript">
+        var message = @Html.Raw(Json.Encode(TempData["CheckAddr"]));
+        alert(message);
+    </script> } 

@@ -186,6 +186,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CustomerDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomerMngt.cs" />
     <Compile Include="Models\CustomerSummaryInfo.cs">
       <DependentUpon>CustomerDB.tt</DependentUpon>
     </Compile>
